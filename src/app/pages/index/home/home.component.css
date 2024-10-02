@@ -1,58 +1,3 @@
-.navbar {
-  background: #35a99b;
-  box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  height: 40px;
-  max-width: 80rem;
-  border-radius: 20px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 20px;
-}
-
-.icons  {
-  width: 80rem;
-}
-
-.img1 {
-  height: 50px;
-  width: 50px;
-  margin-left: 10px;
-}
-
-.img2 {
-  height: 50px;
-  width: 50px;
-  margin-right: 10px;
-}
-
-ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 90%;
-  height: 20px;
-}
-
-li {
-  font-family: 'Roboto', 'Arial';
-  font-weight: bold;
-  list-style-type: none;
-  font-size: 15px;
-  color: #ffffff;
-}
-
-a {
-  padding: 11px;
-  height: 90%;
-  display: block;
-}
-
-a:hover{
-  background-color: #62c7bb;
-}
-
 .content {
   display: flex;
   flex-direction: row;
@@ -76,6 +21,9 @@ a:hover{
   background: linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
   background: -webkit-linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
   background: -moz-linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
+  box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   height: 20rem;
   width: 20rem;
   border-radius: 30px;
@@ -83,9 +31,29 @@ a:hover{
   margin-bottom: 20px;
   margin-right: auto;
   margin-left: 0;
-  box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: 'Roboto','Arial';
+}
+
+.amount h2 {
+  color: #ffffff;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.amount h3 {
+  color: #ffffff;
+  font-size: 50px;
+  text-align: center;
+}
+
+.amount h4 {
+  color: #ffffff;
+  margin-left: 25px;
+  font-size: 12px;
+  /* margin-top: 0px; */
 }
 
 .transaction {
@@ -100,23 +68,28 @@ a:hover{
   margin-bottom: 20px;
   margin-right: auto;
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', 'Arial';
   /* box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75); */
 }
 
-.graphCategory {
-  background: #b97a3b;
-  background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
-  background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
-  background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
-  height: 41.3rem;
-  width: 30rem;
-  border-radius: 30px;
-  margin-top: 20px;
-  box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+.transaction h2 {
+  color:#ffffff;
+}
+
+.transaction h3 {
+  color:#ffffff;
+  /* margin-top: 0; */
+  margin-bottom: 0;
+}
+
+.transaction h4 {
+  color:#ffffff;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .graphAmount {
@@ -127,6 +100,40 @@ a:hover{
   box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  font-family: 'Roboto', 'Arial';
+}
+
+.graphAmount h2 {
+  color: #ffffff;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+.graphCategory {
+  background: #b97a3b;
+  background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+  background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+  background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+  box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
+  height: 41.3rem;
+  width: 30rem;
+  border-radius: 30px;
+  margin-top: 20px;
+  font-family: 'Roboto', 'Arial';
+}
+
+.graphCategory h2 {
+  color: #ffffff;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+.graphCategory li {
+  color: #ffffff;
+  font-family: 'Roboto', 'Arial';
+  list-style-type: none;
 }
 
 /* #f09a42 */

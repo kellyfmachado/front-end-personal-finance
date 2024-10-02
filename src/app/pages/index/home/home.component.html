@@ -1,23 +1,43 @@
 <div class="home">
-  <div class="icons">
-    <img class="img1" src="assets/images/dolar.png" alt="">
-    <img class="img2" src="assets/images/user.png" alt="">
-  </div>
-  <nav class="navbar">
-    <ul>
-      <li><a>Home</a></li>
-      <li><a>Transactions</a></li>
-      <li><a>Categories</a></li>
-    </ul>
-  </nav>
+  <navigation></navigation>
   <div class="content">
     <div class="content_body">
       <div class="content_principal">
-        <div class="amount"></div>
-        <div class="transaction"></div>
+        <div class="amount">
+          <h2>Available amount</h2>
+          <h3>$300,00</h3>
+          <h4>Updated at 16:32pm</h4>
+        </div>
+        <div class="transaction">
+          <h2>Last transaction</h2>
+          <h3>Type:</h3>
+          <h4>Deposit</h4>
+          <h3>Amount:</h3>
+          <h4>$30,00</h4>
+          <h3>Category:</h3>
+          <h4>Food</h4>
+          <h3>Date:</h3>
+          <h4>02/10/2024 at 16:59pm</h4>
+        </div>
       </div>
-      <div class="graphAmount"></div>
+      <div class="graphAmount">
+        <h2>Amount by category</h2>
+      </div>
     </div>
-    <div class="graphCategory"></div>
+    <div class="graphCategory">
+      <h2>Amount by category</h2>
+      <canvas baseChart
+        type="doughnut"
+        [data]="doughnutChartData"
+        [options]="doughnutChartOptions">
+      </canvas>
+      <ul>
+        <li>Salary</li>
+        <li>Food</li>
+        <li>Rent</li>
+        <li>Water</li>
+        <li>Travel</li>
+      </ul>
+    </div>
   </div>
 </div>
