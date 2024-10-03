@@ -61,6 +61,10 @@
   background: linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
   background: -webkit-linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
   background: -moz-linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%); */
+  background: #b97a3b;
+  background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+  background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+  background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
   height: 20rem;
   width: 20rem;
   border-radius: 30px;
@@ -79,18 +83,21 @@
 .transaction h2 {
   color:#ffffff;
   margin-bottom: 5px;
+  margin-left: 25px;
 }
 
 .transaction h3 {
   color:#ffffff;
   /* margin-top: 0; */
   margin-bottom: 0;
+  margin-left: 25px;
 }
 
 .transaction h4 {
   color:#ffffff;
   margin-top: 0;
   margin-bottom: 0;
+  margin-left: 25px;
 }
 
 .graphAmount {
@@ -111,10 +118,10 @@
 }
 
 .graphCategory {
-  background: #b97a3b;
+  /* background: #b97a3b;
   background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
   background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
-  background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+  background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%); */
   box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
@@ -123,6 +130,7 @@
   border-radius: 30px;
   margin-top: 20px;
   font-family: 'Roboto', 'Arial';
+  position: relative;
 }
 
 .graphCategory h2 {
@@ -131,10 +139,10 @@
   margin-top: 20px;
 }
 
-.graphCategory li {
-  color: #ffffff;
-  font-family: 'Roboto', 'Arial';
-  list-style-type: none;
+.graphCategory canvas {
+  padding: 70px;
+  padding-top: 20px;
+  padding-bottom: 120px;
 }
 
 /* #f09a42 */
