@@ -6,7 +6,8 @@
     </div>
     <div class="user">
       <h4>Hello, Kelly!</h4>
-      <img class="user_img" src="assets/images/user.png" alt="">
+      <img onclick="userBox" class="user_img" src="assets/images/user.png" alt="">
+      <div class="userArea" *ngIf="isAlive"></div>
     </div>
   </div>
   <nav class="navbar">
