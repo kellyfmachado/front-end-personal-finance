@@ -5,7 +5,7 @@
       <div class="content_principal">
         <div class="amount">
           <h2>Available amount</h2>
-          <h3>$300,00</h3>
+          <h3>$3.000,00</h3>
           <h4>Updated at 16:32pm</h4>
         </div>
         <div class="transaction">
@@ -22,6 +22,12 @@
       </div>
       <div class="graphAmount">
         <h2>Amount by category</h2>
+        <canvas *ngIf="isBrowser"
+        baseChart
+        type="line"
+        [options]="lineChartOptions"
+        [data]="lineChartData">
+        </canvas>
       </div>
     </div>
     <div class="graphCategory">
