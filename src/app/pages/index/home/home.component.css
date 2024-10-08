@@ -53,14 +53,9 @@
   color: #ffffff;
   margin-left: 25px;
   font-size: 12px;
-  /* margin-top: 0px; */
 }
 
 .transaction {
-  /* background: rgba(53,169,155,0.2);
-  background: linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
-  background: -webkit-linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%);
-  background: -moz-linear-gradient(135deg,rgba(53,169,155,0.2) 0%, #35a99b 80%); */
   background: #b97a3b;
   background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
   background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
@@ -75,9 +70,6 @@
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', 'Arial';
-  /* box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75); */
 }
 
 .transaction h2 {
@@ -88,7 +80,6 @@
 
 .transaction h3 {
   color:#ffffff;
-  /* margin-top: 0; */
   margin-bottom: 0;
   margin-left: 25px;
 }
@@ -118,10 +109,6 @@
 }
 
 .graphCategory {
-  /* background: #b97a3b;
-  background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
-  background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
-  background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%); */
   box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
@@ -130,20 +117,42 @@
   border-radius: 30px;
   margin-top: 20px;
   font-family: 'Roboto', 'Arial';
-  position: relative;
 }
 
 .graphCategory h2 {
   color: #ffffff;
   margin-left: 25px;
   margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 .graphCategory canvas {
-  padding: 70px;
-  padding-top: 20px;
-  padding-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+.graphCategory canvas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#donutCenterText {
+  color: #ffffff;
+  font-size: 70px;
+  position: relative;
+  margin-top: -285px;
+  text-align: center;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+
+
+
+
+
 
 /* #f09a42 */
 /* #d28c44 */

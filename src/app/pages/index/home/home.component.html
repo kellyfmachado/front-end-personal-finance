@@ -36,8 +36,10 @@
       baseChart
       type="doughnut"
       [options]="doughnutChartOptions"
-      [data]="doughnutChartData">
+      [data]="doughnutChartData"
+      (mouseleave)="onMouseLeave($event)">
       </canvas>
+      <div id="donutCenterText"></div>
     </div>
   </div>
 </div>
