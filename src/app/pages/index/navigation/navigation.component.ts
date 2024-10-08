@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'navigation',
   standalone: true,
-  imports: [ NgIf ],
+  imports: [ NgIf, RouterLink ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })

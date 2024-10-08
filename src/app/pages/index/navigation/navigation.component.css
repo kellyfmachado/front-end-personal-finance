@@ -87,6 +87,8 @@ li:hover{
 }
 
 a {
+  color: #ffffff;
+  text-decoration: none;
   padding: 11px;
   height: 90%;
   display: block;

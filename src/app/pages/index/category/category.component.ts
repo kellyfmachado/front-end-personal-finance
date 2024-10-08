@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { NavigationComponent } from "../navigation/navigation.component";
 
 @Component({
   selector: 'category',
   standalone: true,
-  imports: [],
+  imports: [NavigationComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
