@@ -13,16 +13,16 @@ import { isPlatformBrowser, NgIf} from '@angular/common';
 })
 export class HomeComponent {
 
-  @HostListener('mouseleave') onMouseLeave(event: MouseEvent) {
+  isBrowser: boolean;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  @HostListener('mouseleave') perCentLeave(event: MouseEvent) {
     const centerText = document.getElementById('donutCenterText');
     if (centerText) {
       centerText.innerText = ''; // Clears text on leave the graph
     }
-  }
-
-  isBrowser: boolean;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   perCent (context: { chart: Chart, tooltip: TooltipModel<'doughnut'> }) {
@@ -51,9 +51,6 @@ export class HomeComponent {
     tooltipEl.style.left = context.chart.canvas.offsetLeft + context.tooltip.caretX + 'px';
     tooltipEl.style.top = context.chart.canvas.offsetTop + context.tooltip.caretY + 'px';
 
-  }
-
-  perCentLeave () {
   }
 
   // Category graph data
@@ -112,6 +109,16 @@ export class HomeComponent {
     }
   };
 
+  gradientFill (chart: Chart) {
+    const ctx = chart.ctx;
+    const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);
+
+    gradient.addColorStop(0, '#f09a42');  
+    gradient.addColorStop(1, '#f0994200');    
+
+    return gradient;
+  }
+
   //Amount graph data
   public lineChartData: ChartData<'line'> = {
     labels: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'],
@@ -119,18 +126,36 @@ export class HomeComponent {
     datasets: [
       {
         data: [500, 300, 200, 250, 230, 350, 150, 420],
-        backgroundColor: ['#35a99b', '#f09a42', '#f38045'],
-        hoverBackgroundColor: ['#62c7bb', '#eeb072', '#f3a178']
+        borderColor: '#f38045',
+        fill: true,
+        backgroundColor: (context) => this.gradientFill(context.chart)
       }
     ]
   };
 
   // Amount graph options
   public lineChartOptions: ChartOptions<'line'> = {
-    responsive: true,
+    responsive: false,
+    aspectRatio: 3,
     plugins: {
       legend: {
         display: false
+      }
+    },
+    layout: {
+      padding: {
+        top: 10,
+        left: 25,
+        right: 35,
+        bottom: 15
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 100
+        }
       }
     }
   };

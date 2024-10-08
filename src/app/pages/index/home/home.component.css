@@ -108,6 +108,10 @@
   margin-top: 20px;
 }
 
+.graphAmount canvas {
+  width: 100%;
+}
+
 .graphCategory {
   box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
@@ -124,12 +128,6 @@
   margin-left: 25px;
   margin-top: 20px;
   margin-bottom: 60px;
-}
-
-.graphCategory canvas {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .graphCategory canvas {
