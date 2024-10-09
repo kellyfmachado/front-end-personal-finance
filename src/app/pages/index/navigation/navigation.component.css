@@ -10,18 +10,18 @@
   flex-direction: row;
 }
 
+.logo {
+  height: 60px;
+  width: 60px;
+  margin-left: 10px;
+}
+
 h1 {
   color: #f09a42;
   font-weight: bold;
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 0px;
-}
-
-.logo {
-  height: 60px;
-  width: 60px;
-  /* margin-left: 10px; */
 }
 
 .user {
@@ -43,9 +43,9 @@ h4 {
 }
 
 .userArea {
-  background-color: #ffffff;
-  height: 100px;
-  width: 100px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .navbar {
@@ -54,7 +54,7 @@ h4 {
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   height: 40px;
-  max-width: 80rem;
+  max-width: 78.7rem;
   border-radius: 20px;
   margin-right: auto;
   margin-left: auto;

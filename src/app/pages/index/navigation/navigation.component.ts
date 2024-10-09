@@ -11,10 +11,11 @@ import { RouterLink } from '@angular/router';
 })
 export class NavigationComponent {
 
-
   isAlive: boolean = false;
 
   public userBox () {
     this.isAlive = !this.isAlive
   }
+
 }
+
