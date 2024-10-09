@@ -20,10 +20,14 @@
         </select>
         <input type="textArea" placeholder="Description"/>
       </div>
-      <button>Register</button>
+      <button id="register">Register</button>
     </div>
     <div class="list">
-      <h2>Transaction history</h2>
+      <div class="filter">
+        <h2>Transaction history</h2>
+        <button id="all">All</button>
+        <button id="by-category">By category</button>
+      </div>
       <transaction-list></transaction-list>
       <transaction-list></transaction-list>
       <transaction-list></transaction-list>
