@@ -1,15 +1,33 @@
 <div class="transaction">
   <navigation></navigation>
   <div class="transactions">
-    <div class="list"></div>
     <div class="add">
+      <h2>Add transaction</h2>
       <div class="inputs">
-        <input type="text" placeholder="Name"/>
-        <input type="text" placeholder="Email"/>
-        <input type="password" placeholder="Password"/>
-        <input type="password" placeholder="Confirm password"/>
+        <input type="text" placeholder="Amount"/>
+        <select>
+          <option value="" disabled selected hidden>Type</option>
+          <option value="1">Deposit</option>
+          <option value="2">Cash</option>
+        </select>
+        <select>
+          <option value="" disabled selected hidden>Category</option>
+          <option value="1">Food</option>
+          <option value="2">Travel</option>
+          <option value="3">Entertainment</option>
+          <option value="4">Rent</option>
+          <option value="5">Groceries</option>
+        </select>
+        <input type="textArea" placeholder="Description"/>
       </div>
       <button>Register</button>
+    </div>
+    <div class="list">
+      <h2>Transaction history</h2>
+      <transaction-list></transaction-list>
+      <transaction-list></transaction-list>
+      <transaction-list></transaction-list>
+      <button id="more">More</button>
     </div>
   </div>
 </div>
