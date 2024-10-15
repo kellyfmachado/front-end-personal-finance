@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -13,8 +13,12 @@ export class NavigationComponent {
 
   isAlive: boolean = false;
 
-  public userBox () {
-    this.isAlive = !this.isAlive
+  // @HostListener('click') userBox(event: MouseEvent) {
+  //   this.isAlive = !this.isAlive
+  // }
+
+  userBox(event: MouseEvent) {
+    this.isAlive = !this.isAlive;
   }
 
 }

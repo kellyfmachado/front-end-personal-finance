@@ -54,9 +54,23 @@ button {
   margin-right: 20px;
 }
 
+#update:hover {
+  background: rgba(94, 250, 232, 0.2);
+  background: linear-gradient(135deg,rgba(94, 250, 232, 0.2) 0%, #3fc7b7 80%);
+  background: -webkit-linear-gradient(135deg,rgba(94, 250, 232, 0.2) 0%, #3fc7b7 80%);
+  background: -moz-linear-gradient(135deg,rgba(94, 250, 232, 0.2) 0%, #3fc7b7 80%);
+}
+
 #delete {
   background: #b97a3b;
   background: linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
   background: -webkit-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
   background: -moz-linear-gradient(135deg,#b97a3b 0%, #f09a42 80%);
+}
+
+#delete:hover {
+  background: #e79849;
+  background: linear-gradient(135deg,#e79849 0%, #ebae72 80%);
+  background: -webkit-linear-gradient(135deg,#e79849 0%, #ebae72 80%);
+  background: -moz-linear-gradient(135deg,#e79849 0%, #ebae72 80%);
 }

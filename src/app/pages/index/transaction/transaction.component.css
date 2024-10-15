@@ -88,6 +88,10 @@ button {
   width: 100px;
 }
 
+#register:hover {
+  background-color:  #3f4652;
+}
+
 .list {
   box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
@@ -120,7 +124,11 @@ button {
   background: -moz-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
   width: 100px;
   margin-top: 20px;
-  margin-left: 344px; 
+  margin-left: 172px;
+}
+
+#all:hover {
+  background-color: #ffffff36;
 }
 
 #by-category {
@@ -133,6 +141,24 @@ button {
   margin-top: 20px;
 }
 
+#by-category:hover {
+  background-color: #ffffff36;
+}
+
+.filter input {
+  padding-left: 10px;
+  font-family: 'Roboto', 'Arial';
+  height: 30px;
+  width: 150px;
+  margin-top: 25px;
+  margin-left: 10px;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+  -webkit-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+  -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+}
+
 #more {
   background: #ffffff07;
   background: linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
@@ -141,5 +167,9 @@ button {
   width: 100px;
   margin-top: 10px;
   margin-left: 705px;
+}
+
+#more:hover {
+  background-color: #ffffff36;
 }
 

@@ -32,7 +32,7 @@ export class HomeComponent {
       const newTooltipEl = document.createElement('div');
       newTooltipEl.id = 'chartjs-tooltip';
       newTooltipEl.style.position = 'relative';
-      newTooltipEl.style.backgroundColor = '#fff';
+      newTooltipEl.style.backgroundColor = '#ffffff';
       newTooltipEl.style.padding = '10px';
       document.body.appendChild(newTooltipEl);
     }
@@ -71,18 +71,6 @@ export class HomeComponent {
     cutout: '70%',
     plugins: {
       legend: {
-        // position: 'bottom',
-        // align: 'center',
-        // labels: {
-        //   color: '#ffffff',
-        //   font: {
-        //     family: 'Arial',
-        //     size: 20
-        //   },
-        //   pointStyle: 'circle',
-        //   usePointStyle: true,
-        //   padding: 20
-        // }
         display: false
       },
       tooltip: {
@@ -113,8 +101,8 @@ export class HomeComponent {
     const ctx = chart.ctx;
     const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);
 
-    gradient.addColorStop(0, '#f09a42');  
-    gradient.addColorStop(1, '#f0994200');    
+    gradient.addColorStop(0, '#f09942a9');
+    gradient.addColorStop(1, '#f0994200');
 
     return gradient;
   }

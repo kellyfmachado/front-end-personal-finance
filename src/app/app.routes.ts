@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { TransactionComponent } from './pages/index/transaction/transaction.component';
 import { CategoryComponent } from './pages/index/category/category.component';
+import { UpdateAccountComponent } from './pages/index/update-account/update-account.component';
 
 export const routes: Routes = [
   {path:'', component: HomeComponent, pathMatch: 'full'},
@@ -12,6 +13,7 @@ export const routes: Routes = [
   {path:'register', component: RegisterComponent, pathMatch:'prefix'},
   {path:'transaction', component: TransactionComponent, pathMatch: 'full'},
   {path:'category', component: CategoryComponent, pathMatch: 'full'},
+  {path:'update', component: UpdateAccountComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

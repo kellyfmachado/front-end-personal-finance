@@ -6,9 +6,13 @@
     </div>
     <div class="user">
       <h4>Hello, Kelly!</h4>
-      <img onclick="userBox" class="user_img" src="assets/images/user.png" alt="">
-      <div class="userArea"></div>
+      <img (click)="userBox($event)" class="user_img" src="assets/images/user.png" alt="">
     </div>
+  </div>
+  <div *ngIf="isAlive" class="userArea">
+    <li class="account-options"><a routerLink="/update">Update account</a></li>
+    <li class="account-options"><a>Logout</a></li>
+    <li class="account-options"><a id="delete">Delete account</a></li>
   </div>
   <nav class="navbar">
     <ul>

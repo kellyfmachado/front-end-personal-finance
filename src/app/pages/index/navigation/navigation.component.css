@@ -43,9 +43,25 @@ h4 {
 }
 
 .userArea {
+  background-color: #ffffff;
+  height: 120px;
+  width: 150px;
   position: relative;
-  display: inline-block;
-  cursor: pointer;
+  margin-left: 69rem;
+  margin-bottom: -120px;
+  border-radius: 20px;
+}
+
+.account-options a{
+  color: #242931;
+}
+
+.account-options:hover{
+  background-color: #d6d6d6;
+}
+
+#delete {
+  color: red;
 }
 
 .navbar {
