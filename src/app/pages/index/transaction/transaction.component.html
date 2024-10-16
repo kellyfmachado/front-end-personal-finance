@@ -2,7 +2,8 @@
   <navigation></navigation>
   <div class="transactions">
     <div class="add">
-      <h2>Add transaction</h2>
+      <h2 *ngIf="isAliveRegister" >Add transaction</h2>
+      <h2 *ngIf="isAliveUpdate" >Update transaction</h2>
       <div class="inputs">
         <input type="text" placeholder="Amount"/>
         <select>
@@ -20,7 +21,9 @@
         </select>
         <input type="textArea" placeholder="Description"/>
       </div>
-      <button id="register">Register</button>
+      <button id="register" *ngIf="isAliveRegister">Register</button>
+      <button id="update" *ngIf="isAliveUpdate">Update</button>
+      <a (click)="returnRegister($event)" *ngIf="isAliveUpdate" >Return</a>
     </div>
     <div class="list">
       <div class="filter">
@@ -29,9 +32,9 @@
         <button id="by-category">By category</button>
         <input type="text" placeholder="Category"/>
       </div>
-      <transaction-list></transaction-list>
-      <transaction-list></transaction-list>
-      <transaction-list></transaction-list>
+      <transaction-list (updateEvent)="update()"></transaction-list>
+      <transaction-list (updateEvent)="update()"></transaction-list>
+      <transaction-list (updateEvent)="update()"></transaction-list>
       <button id="more">More</button>
     </div>
   </div>

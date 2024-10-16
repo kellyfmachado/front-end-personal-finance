@@ -13,10 +13,6 @@ export class NavigationComponent {
 
   isAlive: boolean = false;
 
-  // @HostListener('click') userBox(event: MouseEvent) {
-  //   this.isAlive = !this.isAlive
-  // }
-
   userBox(event: MouseEvent) {
     this.isAlive = !this.isAlive;
   }

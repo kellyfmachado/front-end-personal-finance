@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'category-list',
@@ -8,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './category-list.component.css'
 })
 export class CategoryListComponent {
+
+  @Output() updateEvent = new EventEmitter<void>();
+
+  returnUpdate(event: MouseEvent) {
+    this.updateEvent.emit();
+  }
 
 }

@@ -2,29 +2,32 @@
   <navigation></navigation>
   <div class="categories">
     <div class="add">
-      <h2>Add category</h2>
+      <h2 *ngIf="isAliveRegister" >Add category</h2>
+      <h2 *ngIf="isAliveUpdate" >Update category</h2>
       <div class="inputs">
         <input type="text" placeholder="Name"/>
       </div>
-      <button id="register">Register</button>
+      <button id="register" *ngIf="isAliveRegister">Register</button>
+      <button id="update" *ngIf="isAliveUpdate">Update</button>
+      <a (click)="returnRegister($event)" *ngIf="isAliveUpdate" >Return</a>
     </div>
     <div class="list">
       <h2>Category list</h2>
       <div class="list_content">
         <div class="row">
-          <category-list></category-list>
-          <category-list></category-list>
-          <category-list></category-list>
+          <category-list (updateEvent)="update()"></category-list>
+          <category-list (updateEvent)="update()"></category-list>
+          <category-list (updateEvent)="update()"></category-list>
         </div>
         <div class="row">
-          <category-list></category-list>
-          <category-list></category-list>
-          <category-list></category-list>
+          <category-list (updateEvent)="update()"></category-list>
+          <category-list (updateEvent)="update()"></category-list>
+          <category-list (updateEvent)="update()"></category-list>
         </div>
         <div class="row">
-          <category-list></category-list>
-          <category-list></category-list>
-          <category-list></category-list>
+          <category-list (updateEvent)="update()"></category-list>
+          <category-list (updateEvent)="update()"></category-list>
+          <category-list (updateEvent)="update()"></category-list>
         </div>
       </div>
       <button id="more">More</button>
