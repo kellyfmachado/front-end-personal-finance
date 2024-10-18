@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [ ],
   imports: [
-    CommonModule,
-    NgModule
+    CommonModule
   ]
 })
 export class IndexModule { }

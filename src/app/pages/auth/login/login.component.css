@@ -27,6 +27,12 @@ img{
   margin-bottom: 10%;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .inputs {
   margin-bottom: 5%;
   display: flex;
@@ -63,6 +69,10 @@ button {
   box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
   -webkit-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
   -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 a {
