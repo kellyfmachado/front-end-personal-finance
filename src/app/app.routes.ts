@@ -16,7 +16,7 @@ export const routes: Routes = [
   {path:'transaction', component: TransactionComponent, canActivate: [authGuard], pathMatch: 'full'},
   {path:'category', component: CategoryComponent, canActivate: [authGuard], pathMatch: 'full'},
   {path:'update', component: UpdateAccountComponent, canActivate: [authGuard], pathMatch: 'full'},
-  { path: '**', redirectTo: '/login' }
+  {path: '**', redirectTo: '/login'},
 
 ];
 

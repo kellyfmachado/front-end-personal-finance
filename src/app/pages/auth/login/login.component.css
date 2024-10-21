@@ -27,6 +27,25 @@ img{
   margin-bottom: 10%;
 }
 
+.message {
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: -7.45%;
+  background-color: rgb(214, 181, 181);
+  color: red;
+  border-width: 1px;
+  border-style: solid;
+  border-color: red;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+}
+
 form {
   display: flex;
   flex-direction: column;

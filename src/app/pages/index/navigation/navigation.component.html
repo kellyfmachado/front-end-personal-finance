@@ -11,12 +11,12 @@
   </div>
   <div *ngIf="isAlive" class="userArea">
     <li class="account-options"><a routerLink="/update">Update account</a></li>
-    <li class="account-options"><a>Logout</a></li>
-    <li class="account-options"><a id="delete">Delete account</a></li>
+    <li class="account-options" (click)="logout($event)"><a>Logout</a></li>
+    <li class="account-options"><a id="delete" (click)="deleteAccount($event)">Delete account</a></li>
   </div>
   <nav class="navbar">
     <ul>
-      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/home">Home</a></li>
       <li><a routerLink="/transaction">Transactions</a></li>
       <li><a routerLink="/category">Categories</a></li>
     </ul>

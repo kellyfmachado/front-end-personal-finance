@@ -62,6 +62,7 @@ h4 {
 
 .account-options:hover{
   background-color: #d6d6d6;
+  cursor: pointer;
 }
 
 #delete {

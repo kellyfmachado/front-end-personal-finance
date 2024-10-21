@@ -18,8 +18,40 @@
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
 }
 
+.messages {
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 5%;
+  margin-bottom: -12.4%;
+  background-color: rgb(214, 181, 181);
+  color: red;
+  border-width: 1px;
+  border-style: solid;
+  border-color: red;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+}
+
+#successMessage {
+  color: rgb(0, 153, 25);
+  background-color: rgb(161, 231, 173);
+  border-color: rgb(0, 153, 25);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .inputs {
-  margin-top:8%;
+  margin-top:10%;
   margin-bottom: 10%;
   display: flex;
   flex-direction: column;
@@ -55,6 +87,10 @@ button {
   box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
   -webkit-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
   -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 a {

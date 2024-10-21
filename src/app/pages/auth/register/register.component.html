@@ -1,11 +1,20 @@
 <div class="register">
-  <div class="inputs">
-    <input type="text" placeholder="Name"/>
-    <input type="text" placeholder="Email"/>
-    <input type="password" placeholder="Password"/>
-    <input type="password" placeholder="Confirm password"/>
+  <div class="messages" *ngIf="errorMessageBox">
+    <h4 *ngIf="!passwordMatch" >Password does not match.</h4>
+    <h4 *ngIf="registrationFailed">Registration failed!</h4>
   </div>
-  <button>Register</button>
+  <div id="successMessage" class="messages" *ngIf="sucessMessageBox">
+    <h4 *ngIf="registrationSucceeded">Registration succeeded!</h4>
+  </div>
+  <form (submit)="onSubmit()">
+    <div class="inputs">
+      <input type="text" name="name" [(ngModel)]="name" placeholder="Name" required/>
+      <input type="text" name="email" [(ngModel)]="email" placeholder="Email" required/>
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required/>
+      <input type="password" name="passwordConfirm" [(ngModel)]="passwordConfirm" placeholder="Confirm password" required/>
+    </div>
+    <button type="submit">Register</button>
+  </form>
   <a routerLink="/login">Return</a>
 </div>
 

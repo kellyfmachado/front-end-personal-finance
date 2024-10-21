@@ -1,5 +1,8 @@
 <div class="login">
   <img src="assets/images/lock.png" alt="lock">
+  <div class="message" *ngIf="loginFailed">
+    <h4>Invalid email or password.</h4>
+  </div>
   <form (submit)="onSubmit()">
     <div class="inputs">
       <input type="email" name="email" [(ngModel)]="email" placeholder="E-mail" required/>

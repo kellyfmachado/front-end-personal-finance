@@ -11,7 +11,7 @@ export class AuthService {
   private apiURL: string = "";
 
   constructor(private http: HttpClient, private route:Router) {
-    this.apiURL = "http://localhost:8080/auth"
+    this.apiURL = "/auth"
   }
 
   login(email:string, password:string):Observable<any>{
@@ -20,6 +20,10 @@ export class AuthService {
         this.setToken(response.token);
       })
     );
+  }
+
+  register(name: string, email:string, password:string):Observable<any>{
+    return this.http.post(`${this.apiURL}/register`, { name, email, password });
   }
 
   logout() {
