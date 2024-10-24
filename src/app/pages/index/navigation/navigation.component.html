@@ -9,10 +9,10 @@
       <img (click)="userBox($event)" class="user_img" src="assets/images/user.png" alt="">
     </div>
   </div>
-  <div *ngIf="isAlive" class="userArea">
+  <div *ngIf="userArea" class="userArea">
     <li class="account-options"><a routerLink="/update">Update account</a></li>
     <li class="account-options" (click)="logout($event)"><a>Logout</a></li>
-    <li class="account-options"><a id="delete" (click)="deleteAccount($event)">Delete account</a></li>
+    <li class="account-options"><a id="delete" (click)="deleteBoxOn($event)">Delete account</a></li>
   </div>
   <nav class="navbar">
     <ul>
@@ -21,4 +21,14 @@
       <li><a routerLink="/category">Categories</a></li>
     </ul>
   </nav>
+</div>
+<div *ngIf="deleteArea" class="deleteAccount">
+  <div class="deleteBox">
+    <h2>Are you sure you want</h2>
+    <h2>to delete this account?</h2>
+    <div class="buttons" >
+      <button id="deleteButton" (click)="deleteAccount($event)">Delete</button>
+      <button (click)="deleteBoxOff($event)">Cancel</button>
+    </div>
+  </div>
 </div>

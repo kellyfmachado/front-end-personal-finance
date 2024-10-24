@@ -1,13 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'navigation',
   standalone: true,
-  imports: [ NgIf ],
+  imports: [ NgIf, RouterLink ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
@@ -15,10 +15,19 @@ export class NavigationComponent {
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
 
-  isAlive: boolean = false;
+  userArea: boolean = false;
+  deleteArea: boolean = false;
 
   userBox(event: MouseEvent) {
-    this.isAlive = !this.isAlive;
+    this.userArea = !this.userArea;
+  }
+
+  deleteBoxOn(event: MouseEvent) {
+    this.deleteArea = true;
+  }
+
+  deleteBoxOff(event: MouseEvent) {
+    this.deleteArea = false;
   }
 
   logout(event: MouseEvent){

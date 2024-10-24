@@ -31,15 +31,26 @@ export class RegisterComponent {
       this.authService.register(this.name, this.email, this.password).subscribe({
         next: () => {
           this.sucessMessageBox = true;
-          this.registrationSucceeded = true},
+          this.registrationSucceeded = true;
+          this.registrationFailed = false;
+          this.passwordMatch = true;
+          this.errorMessageBox = false},
         error: () => {
           this.errorMessageBox = true;
-          this.registrationFailed = true}
+          this.registrationFailed = true;
+          this.sucessMessageBox = false;
+          this.registrationSucceeded = false;
+          this.passwordMatch = true}
       });
     } else {
       this.errorMessageBox = true;
       this.passwordMatch =  false;
+      this.registrationFailed = false;
+      this.sucessMessageBox = false;
+      this.registrationSucceeded = false
     }
   }
 
 }
+
+
