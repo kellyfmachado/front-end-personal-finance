@@ -31,6 +31,43 @@
   margin-top: 20px;
 }
 
+.updateArea h4 {
+  font-family: 'none';
+}
+
+.messages {
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: -3%;
+  margin-bottom: -5%;
+  background-color: rgb(214, 181, 181);
+  color: red;
+  border-width: 1px;
+  border-style: solid;
+  border-color: red;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+}
+
+#successMessage {
+  color: rgb(0, 153, 25);
+  background-color: rgb(161, 231, 173);
+  border-color: rgb(0, 153, 25);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .inputs {
   margin-top:2%;
   margin-bottom: 8%;
@@ -81,6 +118,11 @@ button {
   box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
   -webkit-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
   -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+}
+
+button:hover {
+  background-color:  #3f4652;
+  cursor: pointer;
 }
 
 #register {

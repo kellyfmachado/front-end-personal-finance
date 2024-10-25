@@ -21,34 +21,47 @@ export class RegisterComponent {
   passwordConfirm: string = '';
 
   errorMessageBox: boolean = false;
-  sucessMessageBox: boolean = false;
-  registrationSucceeded: boolean = false;
+  successMessageBox: boolean = false;
   registrationFailed: boolean = false;
   passwordMatch: boolean = true;
+  completeFilds: boolean = false;
 
   onSubmit() {
-    if (this.password == this.passwordConfirm){
-      this.authService.register(this.name, this.email, this.password).subscribe({
-        next: () => {
-          this.sucessMessageBox = true;
-          this.registrationSucceeded = true;
-          this.registrationFailed = false;
-          this.passwordMatch = true;
-          this.errorMessageBox = false},
-        error: () => {
-          this.errorMessageBox = true;
-          this.registrationFailed = true;
-          this.sucessMessageBox = false;
-          this.registrationSucceeded = false;
-          this.passwordMatch = true}
-      });
-    } else {
+    if (!this.name || !this.email || !this.password){
+
       this.errorMessageBox = true;
-      this.passwordMatch =  false;
+      this.completeFilds = true;
+      this.passwordMatch =  true;
       this.registrationFailed = false;
-      this.sucessMessageBox = false;
-      this.registrationSucceeded = false
+      this.successMessageBox = false;
+
+    } else {
+
+      if (this.password == this.passwordConfirm){
+        this.authService.register(this.name, this.email, this.password).subscribe({
+          next: () => {
+            this.successMessageBox = true;
+            this.registrationFailed = false;
+            this.passwordMatch = true;
+            this.errorMessageBox = false;
+            this.completeFilds = false},
+          error: () => {
+            this.errorMessageBox = true;
+            this.registrationFailed = true;
+            this.successMessageBox = false;
+            this.passwordMatch = true;
+            this.completeFilds = false}
+        });
+      } else {
+        this.errorMessageBox = true;
+        this.passwordMatch =  false;
+        this.registrationFailed = false;
+        this.successMessageBox = false;
+        this.completeFilds = false;
+      }
+
     }
+    
   }
 
 }
