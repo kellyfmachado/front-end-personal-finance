@@ -1,8 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'navigation',
@@ -14,6 +14,19 @@ import { UserService } from '../../../services/user.service';
 export class NavigationComponent {
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
+
+  public userName: string = "";
+
+  capitalizeWords(str: string) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+  }
+
+  authenticated() {
+    this.userService.authenticated().subscribe({
+      next: (response)  => this.userName = this.capitalizeWords(response.name),
+      error: (err) => console.log('Error getting user name', err)
+    });
+  }
 
   userArea: boolean = false;
   deleteArea: boolean = false;
@@ -39,6 +52,10 @@ export class NavigationComponent {
       next: ()  => this.router.navigate(['/login']),
       error: (err) => console.log('Error deleting account', err)
     });
+  }
+
+  ngOnInit() {
+    this.authenticated();
   }
 
 }

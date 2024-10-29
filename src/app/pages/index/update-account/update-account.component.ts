@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationComponent } from '../navigation/navigation.component';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/user/user.service';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 

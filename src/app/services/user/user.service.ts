@@ -21,4 +21,8 @@ export class UserService {
     return this.http.put(`${this.apiURL}/update`, { name, email, password });
   }
 
+  authenticated():Observable<any>{
+    return this.http.get(`${this.apiURL}/authenticated`);
+  }
+
 }
