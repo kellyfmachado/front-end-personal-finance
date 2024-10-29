@@ -3,6 +3,8 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { ChartOptions, ChartData, Chart, TooltipModel } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { isPlatformBrowser, NgIf} from '@angular/common';
+import { CategoryService } from '../../../services/category/category.service';
+import { CategoryModel } from '../../../models/category.model';
 
 @Component({
   selector: 'home',
@@ -14,8 +16,28 @@ import { isPlatformBrowser, NgIf} from '@angular/common';
 export class HomeComponent {
 
   isBrowser: boolean;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private categoryService: CategoryService) {
     this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  public categories: CategoryModel[] = [];
+
+  updateChartData() {
+    this.doughnutChartData.labels = this.categories.map(category => category.name);
+    this.doughnutChartData.datasets[0].data = this.categories.map(category => category.amount);
+  }
+
+  getCategories() {
+    this.categoryService.list().subscribe({
+      next: (response)  => {
+        this.categories = response; 
+        this.updateChartData();},
+      error: (err) => console.log('Error getting categories', err)
+    });
+  }
+
+  ngOnInit() {
+    this.getCategories();
   }
 
   @HostListener('mouseleave') perCentLeave(event: MouseEvent) {
@@ -55,10 +77,10 @@ export class HomeComponent {
 
   // Category graph data
   public doughnutChartData: ChartData<'doughnut'> = {
-    labels: ['Rent', 'Groceries', 'Entertainment', 'Food', 'Travel', 'Donation'],
+    labels: [],
     datasets: [
       {
-        data: [500, 300, 200, 100, 100, 50],
+        data: [],
         backgroundColor: ['#35a99b', '#f09a42', '#f38045'],
         hoverBackgroundColor: ['#62c7bb', '#eeb072', '#f3a178']
       }

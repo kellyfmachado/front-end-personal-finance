@@ -15,6 +15,10 @@ export class NavigationComponent {
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
 
+  ngOnInit() {
+    this.authenticated();
+  }
+
   public userName: string = "";
 
   capitalizeWords(str: string) {
@@ -52,10 +56,6 @@ export class NavigationComponent {
       next: ()  => this.router.navigate(['/login']),
       error: (err) => console.log('Error deleting account', err)
     });
-  }
-
-  ngOnInit() {
-    this.authenticated();
   }
 
 }
