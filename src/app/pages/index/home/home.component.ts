@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID, HostListener} from '@angular/core';
+import { Component, Inject, PLATFORM_ID, HostListener, ChangeDetectorRef} from '@angular/core';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { ChartOptions, ChartData, Chart, TooltipModel } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -22,22 +22,19 @@ export class HomeComponent {
 
   public categories: CategoryModel[] = [];
 
-  updateChartData() {
-    this.doughnutChartData.labels = this.categories.map(category => category.name);
-    this.doughnutChartData.datasets[0].data = this.categories.map(category => category.amount);
+  ngOnInit() {
+    this.getCategories();
   }
 
   getCategories() {
     this.categoryService.list().subscribe({
       next: (response)  => {
-        this.categories = response; 
-        this.updateChartData();},
+        this.categories = response;
+        this.doughnutChartData.labels = this.categories.map(category => category.name);
+        this.doughnutChartData.datasets[0].data = this.categories.map(category => category.amount);
+        },
       error: (err) => console.log('Error getting categories', err)
     });
-  }
-
-  ngOnInit() {
-    this.getCategories();
   }
 
   @HostListener('mouseleave') perCentLeave(event: MouseEvent) {
