@@ -2,35 +2,43 @@
   <navigation></navigation>
   <div class="categories">
     <div class="add">
-      <h2 *ngIf="isAliveRegister" >Add category</h2>
-      <h2 *ngIf="isAliveUpdate" >Update category</h2>
-      <div class="inputs">
-        <input type="text" placeholder="Name"/>
-      </div>
-      <button id="register" *ngIf="isAliveRegister">Register</button>
-      <button id="update" *ngIf="isAliveUpdate">Update</button>
+      <h2 *ngIf="isAliveRegister">Add category</h2>
+      <h2 *ngIf="isAliveUpdate">Update category</h2>
+      <form (submit)="onSubmit()">
+        <div class="inputs">
+          <input type="text" name="name"  [(ngModel)]="categoryModel.name" placeholder="Name"/>
+        </div>
+        <button id="register" type="submit" *ngIf="isAliveRegister">Register</button>
+        <button id="update" type="submit" *ngIf="isAliveUpdate">Update</button>
+      </form>
       <a (click)="returnRegister($event)" *ngIf="isAliveUpdate" >Return</a>
     </div>
     <div class="list">
       <h2>Category list</h2>
       <div class="list_content">
         <div class="row">
-          <category-list (updateEvent)="update()"></category-list>
-          <category-list (updateEvent)="update()"></category-list>
-          <category-list (updateEvent)="update()"></category-list>
+          <category-list *ngFor="let category of categoryRowOne; index as i" (updateCategoryEvent)="update(category)" (deleteCategoryEvent)="deleteBoxOn(category)" [category]="categoryRowOne[i]"></category-list>
         </div>
         <div class="row">
-          <category-list (updateEvent)="update()"></category-list>
-          <category-list (updateEvent)="update()"></category-list>
-          <category-list (updateEvent)="update()"></category-list>
+          <category-list *ngFor="let category of categoryRowTwo; index as i" (updateCategoryEvent)="update(category)" (deleteCategoryEvent)="deleteBoxOn(category)" [category]="categoryRowTwo[i]"></category-list>
         </div>
         <div class="row">
-          <category-list (updateEvent)="update()"></category-list>
-          <category-list (updateEvent)="update()"></category-list>
-          <category-list (updateEvent)="update()"></category-list>
+          <category-list *ngFor="let category of categoryRowThree; index as i" (updateCategoryEvent)="update(category)" (deleteCategoryEvent)="deleteBoxOn(category)" [category]="categoryRowThree[i]"></category-list>
         </div>
       </div>
-      <button id="more">More</button>
+      <button *ngIf="isAlivePrevious" class="more" (click)="previousCategories($event)">Previous</button>
+      <button *ngIf="isAliveNext" class="more" (click)="nextCategories($event)">Next</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="deleteArea" class="deleteCategory">
+  <div class="deleteBox">
+    <h2>Are you sure you want</h2>
+    <h2>to delete the</h2>
+    <h2>{{categoryModel.name}} category?</h2>
+    <div class="buttonsDelete" >
+      <button class="buttonDeleteBox" id="deleteButton" (click)="deleteCategory()">Delete</button>
+      <button class="buttonDeleteBox" (click)="deleteBoxOff($event)">Cancel</button>
     </div>
   </div>
 </div>

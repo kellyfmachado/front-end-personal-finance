@@ -1,11 +1,22 @@
 <div class="category">
   <div class="infos">
-    <h3>Name</h3>
+    <h3>{{category.name}}</h3>
     <h4>Amount:</h4>
-    <h4>R$300,00</h4>
+    <h4>${{category.amount}}.00</h4>
   </div>
   <div class="buttons">
-    <button id="update" (click)="returnUpdate($event)">Update</button>
-    <button id="delete">Delete</button>
+    <button class="button" id="update" (click)="returnUpdate($event)">Update</button>
+    <button class="button" id="delete" (click)="deleteCategoryUpdate($event)">Delete</button>
   </div>
 </div>
+<!-- <div *ngIf="deleteArea" class="deleteCategory">
+  <div class="deleteBox">
+    <h2>Are you sure you want</h2>
+    <h2>to delete the</h2>
+    <h2>{{category.name}} category?</h2>
+    <div class="buttonsDelete" >
+      <button class="buttonDeleteBox" id="deleteButton" (click)="deleteCategoryUpdate($event)">Delete</button>
+      <button class="buttonDeleteBox" (click)="deleteBoxOff($event)">Cancel</button>
+    </div>
+  </div>
+</div> -->

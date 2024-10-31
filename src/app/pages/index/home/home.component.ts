@@ -5,6 +5,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import { isPlatformBrowser, NgIf} from '@angular/common';
 import { CategoryService } from '../../../services/category/category.service';
 import { CategoryModel } from '../../../models/category.model';
+import { TransactionService } from '../../../services/transaction/transaction.service';
+import { TransactionModel } from '../../../models/transaction.model';
 
 @Component({
   selector: 'home',
@@ -16,14 +18,25 @@ import { CategoryModel } from '../../../models/category.model';
 export class HomeComponent {
 
   isBrowser: boolean;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private categoryService: CategoryService) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private categoryService: CategoryService, private transactionService: TransactionService) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
+  public now: Date = new Date();
+  public hours: number = this.now.getHours();
+  public minutes: number = this.now.getMinutes();
   public categories: CategoryModel[] = [];
+  public transactions: TransactionModel[] = [];
+  public lastTransaction: TransactionModel | null = null;
+  public availableAmount: number = 0;
 
   ngOnInit() {
     this.getCategories();
+    this.getTransactions();
+  }
+
+  capitalizeWords(str: string) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
   }
 
   getCategories() {
@@ -32,10 +45,23 @@ export class HomeComponent {
         this.categories = response;
         this.doughnutChartData.labels = this.categories.map(category => category.name);
         this.doughnutChartData.datasets[0].data = this.categories.map(category => category.amount);
-        },
+        this.availableAmount = this.categories.reduce((total, category) => total + category.amount, 0);
+      },
       error: (err) => console.log('Error getting categories', err)
     });
-  }
+  } 
+
+  getTransactions() {
+    this.transactionService.list().subscribe({
+      next: (response)  => {
+        this.transactions = response;
+        this.lastTransaction = this.transactions[this.transactions.length-1];
+        this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
+        this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);      
+      },
+      error: (err) => console.log('Error getting transactions', err)
+    });
+  } 
 
   @HostListener('mouseleave') perCentLeave(event: MouseEvent) {
     const centerText = document.getElementById('donutCenterText');

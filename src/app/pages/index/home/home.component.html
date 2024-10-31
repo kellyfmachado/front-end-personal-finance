@@ -5,19 +5,19 @@
       <div class="content_principal">
         <div class="amount">
           <h2>Available amount</h2>
-          <h3>$3.000,00</h3>
-          <h4>Updated at 16:32pm</h4>
+          <h3>${{availableAmount}}.00</h3>
+          <h4>Updated at {{hours}}:{{minutes}}</h4>
         </div>
         <div class="transaction">
           <h2>Last transaction</h2>
           <h3>Amount:</h3>
-          <h4>$30,00</h4>
+          <h4>${{lastTransaction?.amount}}.00</h4>
           <h3>Type:</h3>
-          <h4>Deposit</h4>
+          <h4>{{lastTransaction?.type}}</h4>
           <h3>Category:</h3>
-          <h4>Food</h4>
+          <h4>{{lastTransaction?.categoryModel?.name}}</h4>
           <h3>Date:</h3>
-          <h4>02/10/2024 at 16:59pm</h4>
+          <h4>{{lastTransaction?.date}}</h4>
         </div>
       </div>
       <div class="graphAmount">
