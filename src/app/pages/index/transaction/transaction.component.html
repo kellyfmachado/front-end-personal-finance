@@ -13,11 +13,7 @@
         </select>
         <select>
           <option value="" disabled selected hidden>Category</option>
-          <option value="1">Food</option>
-          <option value="2">Travel</option>
-          <option value="3">Entertainment</option>
-          <option value="4">Rent</option>
-          <option value="5">Groceries</option>
+          <option *ngFor="let category of categories; index as i" [value]="i+1">{{category.name}}</option>
         </select>
         <input type="textArea" placeholder="Description"/>
       </div>
@@ -32,9 +28,7 @@
         <button id="by-category">By category</button>
         <input type="text" placeholder="Category"/>
       </div>
-      <transaction-list (updateEvent)="update()"></transaction-list>
-      <transaction-list (updateEvent)="update()"></transaction-list>
-      <transaction-list (updateEvent)="update()"></transaction-list>
+      <transaction-list *ngFor="let transaction of transactions; index as i" (updateEvent)="update()"  [transaction]="transactions[i]"></transaction-list>
       <button id="more">More</button>
     </div>
   </div>

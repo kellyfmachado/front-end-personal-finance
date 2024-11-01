@@ -23,23 +23,14 @@ export class CategoryComponent {
     this.listCategories();
   }
 
-  deleteArea: boolean = false;
   isAliveRegister: boolean = true;
   isAliveUpdate: boolean = false;
   isAlivePrevious: boolean = false;
   isAliveNext: boolean = false;
+  deleteArea: boolean = false;
   page: number = 0;
   size: number = 9;
   totalPages: number = 0;
-
-  deleteBoxOn(category: CategoryModel) {
-    this.categoryDeleteModel = category;
-    this.deleteArea = true;
-  }
-
-  deleteBoxOff(event: MouseEvent) {
-    this.deleteArea = false;
-  }
 
   returnRegister(event: MouseEvent) {
     this.isAliveUpdate = false;
@@ -53,6 +44,15 @@ export class CategoryComponent {
     this.isAliveUpdate = true;
     this.categoryModel = category;
     this.listCategories();
+  }
+
+  deleteBoxOn(category: CategoryModel) {
+    this.categoryDeleteModel = category;
+    this.deleteArea = true;
+  }
+
+  deleteBoxOff(event: MouseEvent) {
+    this.deleteArea = false;
   }
 
   nextCategories(event: MouseEvent){
@@ -70,7 +70,7 @@ export class CategoryComponent {
   categoryRowTwo: CategoryModel[] = [];
   categoryRowThree: CategoryModel[] = [];
   categoryModel: CategoryModel = {id: 0, name:"", amount: 0};
-  categoryDeleteModel: CategoryModel = {id: 0, name:"", amount: 0}; 
+  categoryDeleteModel: CategoryModel = {id: 0, name:"", amount: 0};
 
   capitalizeWords(str: string) {
     return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
@@ -124,8 +124,6 @@ export class CategoryComponent {
         this.categories = response.content;
         this.totalPages = response.totalPages;
 
-        console.log(this.categories);
-
         if(this.page+1==this.totalPages){
           this.isAliveNext = false;
         } else {
@@ -142,8 +140,8 @@ export class CategoryComponent {
         for(let i = 0; i<this.categories.length; i++){
           if (i<3) {
             this.categoryRowOne[i] = this.categories[i];
-            this.categoryRowOne[i].name = this.capitalizeWords(this.categoryRowOne[i].name); 
-          } 
+            this.categoryRowOne[i].name = this.capitalizeWords(this.categoryRowOne[i].name);
+          }
           else if (i>=3 && i<6) {
             this.categoryRowTwo[i-3] = this.categories[i];
             this.categoryRowTwo[i-3].name = this.capitalizeWords(this.categoryRowTwo[i-3].name);

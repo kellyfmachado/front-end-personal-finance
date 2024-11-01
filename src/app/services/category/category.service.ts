@@ -26,7 +26,7 @@ export class CategoryService {
     return this.http.delete(`${this.apiURL}/delete/${id}`);
   }
 
-  list(page: number = 0, size: number = 10):Observable<any>{
+  list(page: number = 0, size: number = 18):Observable<any>{
     return this.http.get(`${this.apiURL}/list?page=${page}&size=${size}`);
   }
 

@@ -42,14 +42,14 @@ export class HomeComponent {
   getCategories() {
     this.categoryService.list().subscribe({
       next: (response)  => {
-        this.categories = response;
+        this.categories = response.content;
         this.doughnutChartData.labels = this.categories.map(category => category.name);
         this.doughnutChartData.datasets[0].data = this.categories.map(category => category.amount);
         this.availableAmount = this.categories.reduce((total, category) => total + category.amount, 0);
       },
       error: (err) => console.log('Error getting categories', err)
     });
-  } 
+  }
 
   getTransactions() {
     this.transactionService.list().subscribe({
@@ -57,11 +57,11 @@ export class HomeComponent {
         this.transactions = response;
         this.lastTransaction = this.transactions[this.transactions.length-1];
         this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
-        this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);      
+        this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);
       },
       error: (err) => console.log('Error getting transactions', err)
     });
-  } 
+  }
 
   @HostListener('mouseleave') perCentLeave(event: MouseEvent) {
     const centerText = document.getElementById('donutCenterText');
