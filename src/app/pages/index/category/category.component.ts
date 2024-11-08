@@ -152,7 +152,7 @@ export class CategoryComponent {
           }
         }
       },
-      error: (err) => console.log('Error deleting category', err)
+      error: (err) => console.log('Error listing categories', err)
     });
   }
 

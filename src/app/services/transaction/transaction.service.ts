@@ -30,7 +30,7 @@ export class TransactionService {
     return this.http.get(`${this.apiURL}/list?page=${page}&size=${size}`);
   }
 
-  listByCategory(id: number, page: number = 0, size: number = 3):Observable<any>{
+  listByCategory(id: number, page: number = 0, size: number = 10000):Observable<any>{
     return this.http.get(`${this.apiURL}/listByCategory/${id}?page=${page}&size=${size}`);
   }
 

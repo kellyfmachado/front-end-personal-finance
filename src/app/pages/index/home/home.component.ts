@@ -54,7 +54,7 @@ export class HomeComponent {
   getTransactions() {
     this.transactionService.list().subscribe({
       next: (response)  => {
-        this.transactions = response;
+        this.transactions = response.content;
         this.lastTransaction = this.transactions[this.transactions.length-1];
         this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
         this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);

@@ -24,12 +24,20 @@
     <div class="list">
       <div class="filter">
         <h2>Transaction history</h2>
-        <button id="all">All</button>
-        <button id="by-category">By category</button>
-        <input type="text" placeholder="Category"/>
+        <button id="all" (click)="listAll($event)">All</button>
+        <form (submit)="listByCategory()">
+          <button id="by-category" type="submit">By category</button>
+          <select id="category" name="categoryOption" [(ngModel)]="categoryOption">
+            <option value="" disabled selected hidden>Category</option>
+            <option *ngFor="let category of categories; index as i" [value]="i+1">{{category.name}}</option>
+          </select>
+        </form>
       </div>
       <transaction-list *ngFor="let transaction of transactions; index as i" (updateEvent)="update()"  [transaction]="transactions[i]"></transaction-list>
-      <button id="more">More</button>
+      <div class="buttons">
+        <button *ngIf="isAlivePrevious" class="more" (click)="previousCategories($event)">Previous</button>
+        <button *ngIf="isAliveNext" class="more" (click)="nextCategories($event)">Next</button>
+      </div>
     </div>
   </div>
 </div>

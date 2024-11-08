@@ -1,11 +1,15 @@
 <div class="transaction">
-  <div>
-    <h3>Description</h3>
-    <h4>Amount: ${{transaction.amount}}.00</h4>
-    <h4>Type: {{transaction.type}}</h4>
-    <h4>Category: {{transaction.categoryModel.name}}</h4>
-    <h4>Date: {{transaction.date}}</h4>
+  <h3>{{transaction.description}}</h3>
+  <div class="content">
+    <div class="data" >
+      <h4>Amount: ${{transaction.amount}}.00</h4>
+      <h4>Type: {{transaction.type}}</h4>
+      <h4>Category: {{transaction.categoryModel.name}}</h4>
+      <h4>Date: {{transaction.date}}</h4>
+    </div>
+    <div class="buttons">
+      <button id="update" (click)="returnUpdate($event)">Update</button>
+      <button id="delete">Delete</button>
+    </div>
   </div>
-  <button id="update" (click)="returnUpdate($event)">Update</button>
-  <button id="delete">Delete</button>
 </div>

@@ -51,7 +51,8 @@
   -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
 }
 
-.inputs select {
+/* .inputs  */
+select {
   color: #888;
   padding-left: 10px;
   font-family: 'Roboto', 'Arial';
@@ -130,6 +131,8 @@ a:hover {
   margin-left: 10px;
   margin-right: 10px;
   font-family: 'Roboto', 'Arial';
+  display: flex;
+  flex-direction: column;
 }
 
 .filter {
@@ -140,6 +143,12 @@ a:hover {
 .filter h2 {
   color: #ffffff;
   margin-left: 25px;
+  margin-top: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
   margin-top: 20px;
 }
 
@@ -165,7 +174,7 @@ a:hover {
   background: -moz-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
   width: 120px;
   margin-left: 10px;
-  margin-top: 20px;
+  margin-right: 10px;
 }
 
 #by-category:hover {
@@ -173,31 +182,32 @@ a:hover {
   cursor: pointer;
 }
 
-.filter input {
-  padding-left: 10px;
-  font-family: 'Roboto', 'Arial';
-  height: 30px;
-  width: 150px;
-  margin-top: 25px;
-  margin-left: 10px;
-  border: 0;
-  border-radius: 20px;
-  box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
-  -webkit-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
-  -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
+#category {
+  margin-top: 0px;
+  height: 40px;
+  width: 162px;
 }
 
-#more {
+.buttons{
+  margin-top: auto;
+  margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.more {
   background: #ffffff07;
   background: linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
   background: -webkit-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
   background: -moz-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
   width: 100px;
-  margin-top: 10px;
-  margin-left: 705px;
+  margin-top: auto;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
-#more:hover {
+.more:hover {
   background-color: #ffffff36;
   cursor: pointer;
 }
