@@ -4,21 +4,23 @@
     <div class="add">
       <h2 *ngIf="isAliveRegister" >Add transaction</h2>
       <h2 *ngIf="isAliveUpdate" >Update transaction</h2>
-      <div class="inputs">
-        <input type="text" placeholder="Amount"/>
-        <select>
-          <option value="" disabled selected hidden>Type</option>
-          <option value="1">Deposit</option>
-          <option value="2">Cash</option>
-        </select>
-        <select>
-          <option value="" disabled selected hidden>Category</option>
-          <option *ngFor="let category of categories; index as i" [value]="i+1">{{category.name}}</option>
-        </select>
-        <input type="textArea" placeholder="Description"/>
-      </div>
-      <button id="register" *ngIf="isAliveRegister">Register</button>
-      <button id="update" *ngIf="isAliveUpdate">Update</button>
+      <form class="dataRegister" (submit)="register()">
+        <div class="inputs">
+          <input type="text" name="amount" [(ngModel)]="transactionModel.amount" placeholder="Amount"/>
+          <select name="typeOption" [(ngModel)]="typeOption">
+            <option value="0" disabled selected hidden>Type</option>
+            <option value="1">Deposit</option>
+            <option value="2">Cash</option>
+          </select>
+          <select name="categoryRegisterOption" [(ngModel)]="categoryRegisterOption">
+            <option value="0" disabled selected hidden>Category</option>
+            <option *ngFor="let category of categories; index as i" [value]="i+1">{{category.name}}</option>
+          </select>
+          <input type="textArea" name="description" [(ngModel)]="transactionModel.description" placeholder="Description"/>
+        </div>
+        <button id="register" *ngIf="isAliveRegister" type="submit">Register</button>
+        <button id="update" *ngIf="isAliveUpdate" type="submit">Update</button>
+      </form>
       <a (click)="returnRegister($event)" *ngIf="isAliveUpdate" >Return</a>
     </div>
     <div class="list">
@@ -28,16 +30,27 @@
         <form (submit)="listByCategory()">
           <button id="by-category" type="submit">By category</button>
           <select id="category" name="categoryOption" [(ngModel)]="categoryOption">
-            <option value="" disabled selected hidden>Category</option>
+            <option value="0" disabled selected hidden>Category</option>
             <option *ngFor="let category of categories; index as i" [value]="i+1">{{category.name}}</option>
           </select>
         </form>
       </div>
-      <transaction-list *ngFor="let transaction of transactions; index as i" (updateEvent)="update()"  [transaction]="transactions[i]"></transaction-list>
+      <transaction-list *ngFor="let transaction of transactions; index as i" (updateTransactionEvent)="update(transaction)" (deleteTransactionEvent)="deleteBoxOn(transaction)"  [transaction]="transactions[i]"></transaction-list>
       <div class="buttons">
         <button *ngIf="isAlivePrevious" class="more" (click)="previousCategories($event)">Previous</button>
         <button *ngIf="isAliveNext" class="more" (click)="nextCategories($event)">Next</button>
       </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="deleteArea" class="deleteCategory">
+  <div class="deleteBox">
+    <h2>Are you sure you want</h2>
+    <h2>to delete this</h2>
+    <h2>transaction?</h2>
+    <div class="buttonsDelete" >
+      <button class="buttonDeleteBox" id="deleteButton" (click)="deleteTransaction()">Delete</button>
+      <button class="buttonDeleteBox" (click)="deleteBoxOff($event)">Cancel</button>
     </div>
   </div>
 </div>

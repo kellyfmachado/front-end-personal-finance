@@ -14,12 +14,17 @@ export class TransactionListComponent {
 
   constructor(private transactionService: TransactionService){}
 
-  @Input() transaction: TransactionModel = {id: 0, date: "" , amount: 0, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
+  @Input() transaction: TransactionModel = {id: 0, date: new Date() , amount: 0, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
 
-  @Output() updateEvent = new EventEmitter<void>();
+  @Output() updateTransactionEvent = new EventEmitter<TransactionModel>();
+  @Output() deleteTransactionEvent = new EventEmitter<TransactionModel>();
 
   returnUpdate(event: MouseEvent) {
-    this.updateEvent.emit();
+    this.updateTransactionEvent.emit(this.transaction);
+  }
+
+  deleteTransactionUpdate(event: MouseEvent){
+    this.deleteTransactionEvent.emit(this.transaction);
   }
 
 }

@@ -37,13 +37,24 @@ export class TransactionComponent {
   returnRegister(event: MouseEvent) {
     this.isAliveUpdate = false;
     this.isAliveRegister = true;
-    this.transactionModel = {id: 0, date: "" , amount: 0, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
+    this.transactionModel = {id: 0, date: new Date() , amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
     this.listTransactions();
   }
 
-  update(){
+  update(transaction: TransactionModel){
     this.isAliveRegister = false;
     this.isAliveUpdate = true;
+    this.transactionModel = transaction;
+    this.listCategories();
+  }
+
+  deleteBoxOn(transaction: TransactionModel) {
+    this.transactionDeleteModel = transaction;
+    this.deleteArea = true;
+  }
+
+  deleteBoxOff(event: MouseEvent) {
+    this.deleteArea = false;
   }
 
   listAll(event: MouseEvent){
@@ -59,19 +70,30 @@ export class TransactionComponent {
 
   nextCategories(event: MouseEvent){
     this.page = this.page+1;
-    this.listTransactions();
+    if(!this.categoryOption){
+      this.listTransactions();
+    } else {
+      this.listTransactionsByCategory();
+    }
   }
 
   previousCategories(event: MouseEvent){
     this.page = this.page-1;
-    this.listTransactions();
+    if(!this.categoryOption){
+      this.listTransactions();
+    } else {
+      this.listTransactionsByCategory();
+    }
   }
 
   categories: CategoryModel[] = [];
   categoryOption: number = 0;
+  categoryRegisterOption: number = 0;
+  typeOption: number = 0;
+  typeOptions: string[] = ["Deposit", "saque"];
   transactions: TransactionModel[] = [];
-  transactionModel: TransactionModel = {id: 0, date: "" , amount: 0, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
-  transactionDeleteModel: TransactionModel = {id: 0, date: "" , amount: 0, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};;
+  transactionModel: TransactionModel = {id: 0, date: new Date(), amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
+  transactionDeleteModel: TransactionModel = {id: 0, date: new Date() , amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};;
 
   capitalizeWords(str: string) {
     return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
@@ -153,6 +175,47 @@ export class TransactionComponent {
       },
       error: (err) => console.log('Error listing transactions by category', err)
     });
+  }
+
+  addTransaction(){
+    this.transactionService.add(this.transactionModel).subscribe({
+      next: () => {
+        this.listTransactions();
+        this.transactionModel = {id: 0, date: new Date(), amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
+      },
+      error: (err) => console.log('Error adding transaction', err)
+    });
+  }
+
+  updateTransaction(){
+    this.transactionService.update(this.transactionModel).subscribe({
+      next: ()  => {
+        this.listTransactions();
+        this.transactionModel = {id: 0, date: new Date(), amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
+      },
+      error: (err) => console.log('Error updating transaction', err)
+    });
+  }
+
+  deleteTransaction(){
+    this.transactionService.delete(this.transactionDeleteModel.id).subscribe({
+      next: () => {
+        this.deleteArea = false;
+        window.location.reload();
+      },
+      error: (err) => console.log('Error deleting transaction', err)
+    });
+  }
+
+  register(){
+    this.transactionModel.categoryModel = this.categories[this.categoryRegisterOption-1];
+    this.transactionModel.type = this.typeOptions[this.typeOption-1];
+    this.transactionModel.date = new Date();
+    if(this.isAliveRegister){
+      this.addTransaction();
+    } else{
+      this.updateTransaction();
+    }
   }
 
 }

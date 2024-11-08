@@ -6,7 +6,7 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'category-list',
   standalone: true,
-  imports: [ NgIf ],
+  imports: [ ],
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.css'
 })
