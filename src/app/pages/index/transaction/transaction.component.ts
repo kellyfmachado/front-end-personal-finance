@@ -45,7 +45,11 @@ export class TransactionComponent {
     this.isAliveRegister = false;
     this.isAliveUpdate = true;
     this.transactionModel = transaction;
-    this.listCategories();
+    if(!this.categoryOption){
+      this.listTransactions();
+    } else {
+      this.listTransactionsByCategory();
+    }
   }
 
   deleteBoxOn(transaction: TransactionModel) {
@@ -90,7 +94,7 @@ export class TransactionComponent {
   categoryOption: number = 0;
   categoryRegisterOption: number = 0;
   typeOption: number = 0;
-  typeOptions: string[] = ["Deposit", "saque"];
+  typeOptions: string[] = ["deposit", "withdraw"];
   transactions: TransactionModel[] = [];
   transactionModel: TransactionModel = {id: 0, date: new Date(), amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
   transactionDeleteModel: TransactionModel = {id: 0, date: new Date() , amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};;
@@ -178,6 +182,7 @@ export class TransactionComponent {
   }
 
   addTransaction(){
+    console.log(this.transactionModel);
     this.transactionService.add(this.transactionModel).subscribe({
       next: () => {
         this.listTransactions();
@@ -188,6 +193,7 @@ export class TransactionComponent {
   }
 
   updateTransaction(){
+    console.log(this.transactionModel);
     this.transactionService.update(this.transactionModel).subscribe({
       next: ()  => {
         this.listTransactions();
@@ -208,8 +214,13 @@ export class TransactionComponent {
   }
 
   register(){
-    this.transactionModel.categoryModel = this.categories[this.categoryRegisterOption-1];
-    this.transactionModel.type = this.typeOptions[this.typeOption-1];
+    if(this.categoryRegisterOption!=0){
+      this.transactionModel.categoryModel = this.categories[this.categoryRegisterOption-1];
+    }
+    if(this.typeOption!=0){
+      this.transactionModel.type = this.typeOptions[this.typeOption-1];
+    }
+    this.categoryOption = 0;
     this.transactionModel.date = new Date();
     if(this.isAliveRegister){
       this.addTransaction();
