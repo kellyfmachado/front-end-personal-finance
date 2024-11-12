@@ -24,13 +24,13 @@ export class RegisterComponent {
   successMessageBox: boolean = false;
   registrationFailed: boolean = false;
   passwordMatch: boolean = true;
-  completeFilds: boolean = false;
+  completeFields: boolean = false;
 
   onSubmit() {
     if (!this.name || !this.email || !this.password){
 
       this.errorMessageBox = true;
-      this.completeFilds = true;
+      this.completeFields = true;
       this.passwordMatch =  true;
       this.registrationFailed = false;
       this.successMessageBox = false;
@@ -44,20 +44,20 @@ export class RegisterComponent {
             this.registrationFailed = false;
             this.passwordMatch = true;
             this.errorMessageBox = false;
-            this.completeFilds = false},
+            this.completeFields = false},
           error: () => {
             this.errorMessageBox = true;
             this.registrationFailed = true;
             this.successMessageBox = false;
             this.passwordMatch = true;
-            this.completeFilds = false}
+            this.completeFields = false}
         });
       } else {
         this.errorMessageBox = true;
         this.passwordMatch =  false;
         this.registrationFailed = false;
         this.successMessageBox = false;
-        this.completeFilds = false;
+        this.completeFields = false;
       }
 
     }

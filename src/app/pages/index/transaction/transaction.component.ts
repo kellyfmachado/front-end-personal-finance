@@ -25,6 +25,10 @@ export class TransactionComponent {
     this.listCategories();
   }
 
+  errorMessageBox: boolean = false;
+  registrationFailed: boolean = false;
+  completeFields: boolean = false;
+
   isAliveRegister: boolean = true;
   isAliveUpdate: boolean = false;
   isAlivePrevious: boolean = false;
@@ -44,6 +48,9 @@ export class TransactionComponent {
   update(transaction: TransactionModel){
     this.isAliveRegister = false;
     this.isAliveUpdate = true;
+    this.errorMessageBox = false;
+    this.registrationFailed = false;
+    this.completeFields = false;
     this.transactionModel = transaction;
     if(!this.categoryOption){
       this.listTransactions();
@@ -186,9 +193,15 @@ export class TransactionComponent {
     this.transactionService.add(this.transactionModel).subscribe({
       next: () => {
         this.listTransactions();
+        this.errorMessageBox = false;
+        this.registrationFailed = false;
         this.transactionModel = {id: 0, date: new Date(), amount: null, type:"", description: "", categoryModel: {id: 0, name:"", amount: 0}};
       },
-      error: (err) => console.log('Error adding transaction', err)
+      error: (err) => {
+        this.errorMessageBox = true;
+        this.registrationFailed = true;
+        console.log('Error adding transaction', err)
+      }
     });
   }
 
@@ -220,13 +233,21 @@ export class TransactionComponent {
     if(this.typeOption!=0){
       this.transactionModel.type = this.typeOptions[this.typeOption-1];
     }
-    this.categoryOption = 0;
     this.transactionModel.date = new Date();
     if(this.isAliveRegister){
-      this.addTransaction();
+      if(!this.transactionModel.amount || !this.typeOption || !this.categoryRegisterOption || !this.transactionModel.description){
+        this.errorMessageBox = true;
+        this.completeFields = true;
+      }
+      else {
+        this.errorMessageBox = false;
+        this.completeFields = false;
+        this.addTransaction();
+      }
     } else{
       this.updateTransaction();
     }
+    this.categoryOption = 0;
   }
 
 }

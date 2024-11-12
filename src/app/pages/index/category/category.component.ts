@@ -21,7 +21,12 @@ export class CategoryComponent {
 
   ngOnInit(){
     this.listCategories();
+    this.listAllCategories();
   }
+
+  errorMessageBox: boolean = false;
+  registrationFailed: boolean = false;
+  registerLimit: boolean = false;
 
   isAliveRegister: boolean = true;
   isAliveUpdate: boolean = false;
@@ -42,6 +47,9 @@ export class CategoryComponent {
   update(category: CategoryModel){
     this.isAliveRegister = false;
     this.isAliveUpdate = true;
+    this.errorMessageBox = false;
+    this.registrationFailed = false;
+    this.registerLimit = false;
     this.categoryModel = category;
     this.listCategories();
   }
@@ -66,6 +74,7 @@ export class CategoryComponent {
   }
 
   categories: CategoryModel[] = [];
+  allCategories: CategoryModel[] = [];
   categoryRowOne: CategoryModel[] = [];
   categoryRowTwo: CategoryModel[] = [];
   categoryRowThree: CategoryModel[] = [];
@@ -79,10 +88,17 @@ export class CategoryComponent {
   addCategory(){
     this.categoryService.add(this.categoryModel.name).subscribe({
       next: () => {
+        this.errorMessageBox = false;
+        this.registrationFailed = false;
         this.listCategories();
+        this.listAllCategories();
         this.categoryModel = {id: 0, name:"", amount: 0};
       },
-      error: (err) => console.log('Error adding category', err)
+      error: (err) => {
+        this.errorMessageBox = true;
+        this.registrationFailed = true;
+        console.log('Error adding category', err)
+      }
     });
   }
 
@@ -108,7 +124,15 @@ export class CategoryComponent {
 
   onSubmit(){
     if(this.isAliveRegister){
-      this.addCategory();
+      if(this.allCategories.length<18){
+        this.errorMessageBox = false;
+        this.registerLimit = false;
+        this.addCategory();
+      }
+      else {
+        this.errorMessageBox = true;
+        this.registerLimit = true;
+      }
     } else{
       this.updateCategory();
     }
@@ -150,6 +174,20 @@ export class CategoryComponent {
             this.categoryRowThree[i-6] = this.categories[i];
             this.categoryRowThree[i-6].name = this.capitalizeWords(this.categoryRowThree[i-6].name);
           }
+        }
+      },
+      error: (err) => console.log('Error listing categories', err)
+    });
+  }
+
+  listAllCategories(){
+    this.allCategories = [];
+    this.categoryService.list().subscribe({
+      next: (response)  => {
+        this.allCategories = response.content;
+
+        for(let i = 0; i<this.allCategories.length; i++){
+          this.allCategories[i].name = this.capitalizeWords(this.categories[i].name);
         }
       },
       error: (err) => console.log('Error listing categories', err)

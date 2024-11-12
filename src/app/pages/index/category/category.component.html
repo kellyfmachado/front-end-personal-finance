@@ -4,6 +4,10 @@
     <div class="add">
       <h2 *ngIf="isAliveRegister">Add category</h2>
       <h2 *ngIf="isAliveUpdate">Update category</h2>
+      <div class="message" *ngIf="errorMessageBox">
+        <h4 *ngIf="registrationFailed">Registration failed!</h4>
+        <h4 *ngIf="registerLimit">You have reached the category limit.</h4>
+      </div>
       <form (submit)="onSubmit()">
         <div class="inputs">
           <input type="text" name="name"  [(ngModel)]="categoryModel.name" placeholder="Name"/>

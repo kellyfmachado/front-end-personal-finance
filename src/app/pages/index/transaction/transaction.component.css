@@ -29,6 +29,26 @@
   margin-top: 20px;
 }
 
+.message {
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: -4%;
+  margin-bottom: -4%;
+  background-color: rgb(214, 181, 181);
+  color: red;
+  border-width: 1px;
+  border-style: solid;
+  border-color: red;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+}
+
 .dataRegister {
   display: flex;
   flex-direction: column;
