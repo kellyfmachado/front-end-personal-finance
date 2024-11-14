@@ -8,7 +8,7 @@
           <h3>${{availableAmount}}.00</h3>
           <h4>Updated at {{hours}}:{{minutes}}</h4>
         </div>
-        <div class="transaction">
+        <div class="transaction" *ngIf="isAliveLastTransaction">
           <h2>Last transaction</h2>
           <h3>Amount:</h3>
           <h4>${{lastTransaction?.amount}}.00</h4>
@@ -17,7 +17,14 @@
           <h3>Category:</h3>
           <h4>{{lastTransaction?.categoryModel?.name}}</h4>
           <h3>Date:</h3>
-          <h4>{{lastTransaction?.date}}</h4>
+          <h4>{{lastTransaction?.date | date: 'dd/MM/yyyy HH:mm'}}</h4>
+        </div>
+        <div class="transaction" *ngIf="!isAliveLastTransaction">
+          <h2>Last transaction</h2>
+          <div class="noTransaction">
+            <h3>There is no</h3>
+            <h3>transaction yet.</h3>
+          </div>
         </div>
       </div>
       <div class="graphAmount">
@@ -30,7 +37,7 @@
         </canvas>
       </div>
     </div>
-    <div class="graphCategory">
+    <div class="graphCategory" *ngIf="isAliveLastTransaction">
       <h2>Amount by category</h2>
       <canvas *ngIf="isBrowser"
       baseChart
@@ -40,6 +47,13 @@
       (mouseleave)="perCentLeave($event)">
       </canvas>
       <div id="donutCenterText"></div>
+    </div>
+    <div class="graphCategory" *ngIf="!isAliveLastTransaction">
+      <h2>Amount by category</h2>
+      <div class="noTransaction">
+        <h3 id="warning">There is no</h3>
+        <h3>transaction yet.</h3>
+      </div>
     </div>
   </div>
 </div>

@@ -27,7 +27,7 @@
       </form>
       <a (click)="returnRegister($event)" *ngIf="isAliveUpdate" >Return</a>
     </div>
-    <div class="list">
+    <div class="list" *ngIf="isAliveTransactions">
       <div class="filter">
         <h2>Transaction history</h2>
         <button id="all" (click)="listAll($event)">All</button>
@@ -43,6 +43,15 @@
       <div class="buttons">
         <button *ngIf="isAlivePrevious" class="more" (click)="previousCategories($event)">Previous</button>
         <button *ngIf="isAliveNext" class="more" (click)="nextCategories($event)">Next</button>
+      </div>
+    </div>
+    <div class="list" *ngIf="!isAliveTransactions">
+      <div class="filter">
+        <h2>Transaction history</h2>
+      </div>
+      <div class="noTransaction">
+        <h3>There is no</h3>
+        <h3>transaction yet.</h3>
       </div>
     </div>
   </div>

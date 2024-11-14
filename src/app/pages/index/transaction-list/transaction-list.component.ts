@@ -1,12 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TransactionComponent } from '../transaction/transaction.component';
 import { TransactionModel } from '../../../models/transaction.model';
 import { TransactionService } from '../../../services/transaction/transaction.service';
 
 @Component({
   selector: 'transaction-list',
   standalone: true,
-  imports: [ ],
+  imports: [ CommonModule ],
   templateUrl: './transaction-list.component.html',
   styleUrl: './transaction-list.component.css'
 })

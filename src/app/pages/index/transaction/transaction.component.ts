@@ -97,6 +97,8 @@ export class TransactionComponent {
     }
   }
 
+  public isAliveTransactions: boolean = false;
+
   categories: CategoryModel[] = [];
   categoryOption: number = 0;
   categoryRegisterOption: number = 0;
@@ -151,6 +153,13 @@ export class TransactionComponent {
           this.isAlivePrevious = false;
         } else {
           this.isAlivePrevious = true;
+        }
+
+        if(this.transactions.length!=0){
+          this.isAliveTransactions = true;
+        }
+        else {
+          this.isAliveTransactions = false;
         }
 
       },

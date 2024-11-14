@@ -5,7 +5,7 @@
       <h4>Amount: ${{transaction.amount}}.00</h4>
       <h4>Type: {{transaction.type}}</h4>
       <h4>Category: {{transaction.categoryModel.name}}</h4>
-      <h4>Date: {{transaction.date}}</h4>
+      <h4>Date: {{transaction.date | date: 'dd/MM/yyyy HH:mm'}}</h4>
     </div>
     <div class="buttons">
       <button id="update" (click)="returnUpdate($event)">Update</button>

@@ -73,6 +73,8 @@ export class CategoryComponent {
     this.listCategories();
   }
 
+  public isAliveCategories: boolean = false;
+
   categories: CategoryModel[] = [];
   allCategories: CategoryModel[] = [];
   categoryRowOne: CategoryModel[] = [];
@@ -160,7 +162,6 @@ export class CategoryComponent {
           this.isAlivePrevious = true;
         }
 
-        console.log(this.totalPages);
         for(let i = 0; i<this.categories.length; i++){
           if (i<3) {
             this.categoryRowOne[i] = this.categories[i];
@@ -175,6 +176,14 @@ export class CategoryComponent {
             this.categoryRowThree[i-6].name = this.capitalizeWords(this.categoryRowThree[i-6].name);
           }
         }
+
+        if(this.categories.length!=0){
+          this.isAliveCategories = true;
+        }
+        else {
+          this.isAliveCategories = false;
+        }
+
       },
       error: (err) => console.log('Error listing categories', err)
     });

@@ -7,11 +7,12 @@ import { CategoryService } from '../../../services/category/category.service';
 import { CategoryModel } from '../../../models/category.model';
 import { TransactionService } from '../../../services/transaction/transaction.service';
 import { TransactionModel } from '../../../models/transaction.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [ NavigationComponent, BaseChartDirective, NgIf ],
+  imports: [ NavigationComponent, BaseChartDirective, NgIf, CommonModule ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -21,6 +22,8 @@ export class HomeComponent {
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private categoryService: CategoryService, private transactionService: TransactionService) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
+
+  public isAliveLastTransaction: boolean = false;
 
   public now: Date = new Date();
   public hours: number = this.now.getHours();
@@ -58,6 +61,12 @@ export class HomeComponent {
         this.lastTransaction = this.transactions[this.transactions.length-1];
         this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
         this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);
+        if(this.transactions.length!=0){
+          this.isAliveLastTransaction = true;
+        }
+        else {
+          this.isAliveLastTransaction = false;
+        }
       },
       error: (err) => console.log('Error getting transactions', err)
     });

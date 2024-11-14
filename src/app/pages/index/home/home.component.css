@@ -88,6 +88,27 @@
   margin-left: 25px;
 }
 
+.noTransaction {
+  margin-top: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noTransaction h3 {
+  color: #ffffff;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+
+#warning{
+  margin-top: 25%;
+}
+
 .graphAmount {
   background: #242931;
   height: 20rem;
