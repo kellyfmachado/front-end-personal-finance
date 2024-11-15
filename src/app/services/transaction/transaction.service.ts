@@ -26,7 +26,7 @@ export class TransactionService {
     return this.http.delete(`${this.apiURL}/delete/${id}`);
   }
 
-  list(page: number = 0, size: number = 3):Observable<any>{
+  list(page: number = 0, size: number = 10000):Observable<any>{
     return this.http.get(`${this.apiURL}/list?page=${page}&size=${size}`);
   }
 

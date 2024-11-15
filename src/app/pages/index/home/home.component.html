@@ -27,14 +27,36 @@
           </div>
         </div>
       </div>
-      <div class="graphAmount">
-        <h2>Amount variation</h2>
+      <div class="graphAmount" *ngIf="isAliveLastTransaction">
+        <div class="filter">
+          <h2>Transaction amount variation</h2>
+          <div class="buttons">
+            <button>Today</button>
+            <button>Last week</button>
+          </div>
+        </div>
+        <div  class="legend">
+          <div *ngFor="let transactionType of transactionTypes" class="legendItem">
+            <span
+              class="legendColor"
+              [ngStyle]="{'background-color': typeColors[transactionType]}"
+            ></span>
+            <label>{{ transactionType | titlecase }}</label>
+          </div>
+        </div>
         <canvas *ngIf="isBrowser"
         baseChart
-        type="line"
-        [options]="lineChartOptions"
-        [data]="lineChartData">
+        type="bar"
+        [options]="barChartOptions"
+        [data]="barChartData">
         </canvas>
+      </div>
+      <div class="graphAmount" *ngIf="!isAliveLastTransaction">
+        <h2>Transaction amount variation</h2>
+        <div class="noTransaction">
+          <h3 id="warning">There is no</h3>
+          <h3>transaction yet.</h3>
+        </div>
       </div>
     </div>
     <div class="graphCategory" *ngIf="isAliveLastTransaction">

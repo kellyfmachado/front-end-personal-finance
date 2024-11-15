@@ -78,7 +78,6 @@
   -moz-box-shadow: 11px 9px 28px -9px rgba(0,0,0,0.74);
 }
 
-/* .inputs  */
 select {
   color: #888;
   padding-left: 10px;
@@ -173,12 +172,6 @@ a:hover {
   margin-top: 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-}
-
 #all {
   background: #ffffff07;
   background: linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
@@ -186,7 +179,7 @@ form {
   background: -moz-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
   width: 100px;
   margin-top: 20px;
-  margin-left: 172px;
+  margin-left: 295px;
 }
 
 #all:hover {
@@ -194,23 +187,9 @@ form {
   cursor: pointer;
 }
 
-#by-category {
-  background: #ffffff07;
-  background: linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
-  background: -webkit-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
-  background: -moz-linear-gradient(135deg,#ffffff07 0%, #ffffff2c 80%);
-  width: 120px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-#by-category:hover {
-  background-color: #ffffff36;
-  cursor: pointer;
-}
-
 #category {
-  margin-top: 0px;
+  margin-right: 25px;
+  margin-top: 20px;
   height: 40px;
   width: 162px;
 }

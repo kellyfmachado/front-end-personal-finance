@@ -74,7 +74,7 @@ export class TransactionComponent {
     this.listTransactions();
   }
 
-  listByCategory(){
+  listByCategory(event: Event){
     this.page = 0;
     this.listTransactionsByCategory();
   }
@@ -120,7 +120,7 @@ export class TransactionComponent {
     this.categories = [];
     this.categoryService.list().subscribe({
       next: (response)  => {
-        this.categories = response.content;
+        this.categories = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);;
 
         for(let i = 0; i<this.categories.length; i++){
           this.categories[i].name = this.capitalizeWords(this.categories[i].name);
@@ -134,7 +134,7 @@ export class TransactionComponent {
     this.transactions = [];
     this.transactionService.list(this.page, this.size).subscribe({
       next: (response)  => {
-        this.transactions = response.content;
+        this.transactions = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
         this.totalPages = response.totalPages;
 
         for(let i = 0; i<this.transactions.length; i++){
@@ -171,7 +171,7 @@ export class TransactionComponent {
     this.transactions = [];
     this.transactionService.listByCategory(this.categories[this.categoryOption-1].id, this.page, this.size).subscribe({
       next: (response)  => {
-        this.transactions = response.content;
+        this.transactions = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
         this.totalPages = response.totalPages;
 
         for(let i = 0; i<this.transactions.length; i++){

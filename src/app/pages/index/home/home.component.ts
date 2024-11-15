@@ -2,7 +2,7 @@ import { Component, Inject, PLATFORM_ID, HostListener, ChangeDetectorRef} from '
 import { NavigationComponent } from '../navigation/navigation.component';
 import { ChartOptions, ChartData, Chart, TooltipModel } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { isPlatformBrowser, NgIf} from '@angular/common';
+import { isPlatformBrowser, NgFor, NgIf} from '@angular/common';
 import { CategoryService } from '../../../services/category/category.service';
 import { CategoryModel } from '../../../models/category.model';
 import { TransactionService } from '../../../services/transaction/transaction.service';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [ NavigationComponent, BaseChartDirective, NgIf, CommonModule ],
+  imports: [ NavigationComponent, BaseChartDirective, NgIf, CommonModule, NgFor ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -25,6 +25,7 @@ export class HomeComponent {
 
   public isAliveLastTransaction: boolean = false;
 
+  public transactionTypes: string[] = ['deposit', 'withdraw'];
   public now: Date = new Date();
   public hours: number = this.now.getHours();
   public minutes: number = this.now.getMinutes();
@@ -45,7 +46,7 @@ export class HomeComponent {
   getCategories() {
     this.categoryService.list().subscribe({
       next: (response)  => {
-        this.categories = response.content;
+        this.categories = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);;
         this.doughnutChartData.labels = this.categories.map(category => category.name);
         this.doughnutChartData.datasets[0].data = this.categories.map(category => category.amount);
         this.availableAmount = this.categories.reduce((total, category) => total + category.amount, 0);
@@ -57,16 +58,28 @@ export class HomeComponent {
   getTransactions() {
     this.transactionService.list().subscribe({
       next: (response)  => {
-        this.transactions = response.content;
+        this.transactions = response.content.sort((a: { id: number; }, b: { id: number; }) => a.id - b.id);;
+
+        this.barChartData.labels = this.transactions.map(transaction => new Date(transaction.date).toLocaleTimeString('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit'
+        }));
+
+        this.barChartData.datasets[0].data = this.transactions.map(transaction => transaction.amount);
+        this.barChartData.datasets[0].backgroundColor = this.transactions.map(transaction => this.typeColors[transaction.type]);
+        this.barChartData.datasets[0].hoverBackgroundColor = this.transactions.map(transaction => this.hoverTypeColors[transaction.type]);
+
         this.lastTransaction = this.transactions[this.transactions.length-1];
         this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
         this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);
+
         if(this.transactions.length!=0){
           this.isAliveLastTransaction = true;
         }
         else {
           this.isAliveLastTransaction = false;
         }
+
       },
       error: (err) => console.log('Error getting transactions', err)
     });
@@ -126,11 +139,6 @@ export class HomeComponent {
     plugins: {
       legend: {
         display: false
-      },
-      tooltip: {
-        external: (context) => {
-
-        }
       }
     },
     layout: {
@@ -151,32 +159,33 @@ export class HomeComponent {
     }
   };
 
-  gradientFill (chart: Chart) {
-    const ctx = chart.ctx;
-    const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);
+  // Mapping colors by types
+  public typeColors: { [key: string]: string } = {
+    deposit: '#35a99b',
+    withdraw: '#f38045',
+  };
 
-    gradient.addColorStop(0, '#f09942a9');
-    gradient.addColorStop(1, '#f0994200');
+  private hoverTypeColors: { [key: string]: string } = {
+    deposit: '#62c7bb',
+    withdraw: '#f3a178',
+  };
 
-    return gradient;
-  }
-
-  //Amount graph data
-  public lineChartData: ChartData<'line'> = {
-    labels: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'],
-
+  // Amount graph data
+  public barChartData: ChartData<'bar'> = {
+    labels: [],
     datasets: [
       {
-        data: [500, 300, 200, 250, 230, 350, 150, 420],
-        borderColor: '#f38045',
-        fill: true,
-        backgroundColor: (context) => this.gradientFill(context.chart)
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: [],
+        barPercentage: 0.5,
+        categoryPercentage: 0.9
       }
     ]
   };
 
   // Amount graph options
-  public lineChartOptions: ChartOptions<'line'> = {
+  public barChartOptions: ChartOptions<'bar'> = {
     responsive: false,
     aspectRatio: 3,
     plugins: {
@@ -186,9 +195,9 @@ export class HomeComponent {
     },
     layout: {
       padding: {
-        top: 10,
+        top: 0,
         left: 25,
-        right: 35,
+        right: 25,
         bottom: 15
       }
     },
@@ -198,6 +207,13 @@ export class HomeComponent {
         ticks: {
           stepSize: 100
         }
+      },
+      x: {
+        stacked: false,
+        grid: {
+          display: false
+        }
+
       }
     }
   };

@@ -83,8 +83,8 @@ export class CategoryComponent {
   categoryModel: CategoryModel = {id: 0, name:"", amount: 0};
   categoryDeleteModel: CategoryModel = {id: 0, name:"", amount: 0};
 
-  capitalizeWords(str: string) {
-    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+  capitalizeFirst(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   addCategory(){
@@ -147,7 +147,7 @@ export class CategoryComponent {
     this.categoryRowThree = [];
     this.categoryService.list(this.page, this.size).subscribe({
       next: (response)  => {
-        this.categories = response.content;
+        this.categories = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
         this.totalPages = response.totalPages;
 
         if(this.page+1==this.totalPages){
@@ -165,15 +165,15 @@ export class CategoryComponent {
         for(let i = 0; i<this.categories.length; i++){
           if (i<3) {
             this.categoryRowOne[i] = this.categories[i];
-            this.categoryRowOne[i].name = this.capitalizeWords(this.categoryRowOne[i].name);
+            this.categoryRowOne[i].name = this.capitalizeFirst(this.categoryRowOne[i].name);
           }
           else if (i>=3 && i<6) {
             this.categoryRowTwo[i-3] = this.categories[i];
-            this.categoryRowTwo[i-3].name = this.capitalizeWords(this.categoryRowTwo[i-3].name);
+            this.categoryRowTwo[i-3].name = this.capitalizeFirst(this.categoryRowTwo[i-3].name);
           }
           else if (i>=6 && i<9) {
             this.categoryRowThree[i-6] = this.categories[i];
-            this.categoryRowThree[i-6].name = this.capitalizeWords(this.categoryRowThree[i-6].name);
+            this.categoryRowThree[i-6].name = this.capitalizeFirst(this.categoryRowThree[i-6].name);
           }
         }
 
@@ -193,10 +193,10 @@ export class CategoryComponent {
     this.allCategories = [];
     this.categoryService.list().subscribe({
       next: (response)  => {
-        this.allCategories = response.content;
+        this.allCategories = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
 
         for(let i = 0; i<this.allCategories.length; i++){
-          this.allCategories[i].name = this.capitalizeWords(this.categories[i].name);
+          this.allCategories[i].name = this.capitalizeFirst(this.categories[i].name);
         }
       },
       error: (err) => console.log('Error listing categories', err)
