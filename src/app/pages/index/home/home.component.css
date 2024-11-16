@@ -105,7 +105,11 @@
   margin-bottom: 0;
 }
 
-#warning{
+#noTransactions {
+  margin-top: 13%;
+}
+
+#warning {
   margin-top: 25%;
 }
 
@@ -118,6 +122,13 @@
   -webkit-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 16px 47px -6px rgba(0,0,0,0.75);
   font-family: 'Roboto', 'Arial';
+}
+
+.graphAmount h2 {
+  color: #ffffff;
+  margin-left: 25px;
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .filter {

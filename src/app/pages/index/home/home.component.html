@@ -31,8 +31,8 @@
         <div class="filter">
           <h2>Transaction amount variation</h2>
           <div class="buttons">
-            <button>Today</button>
-            <button>Last week</button>
+            <button (click)="transactionsLastDay($event)">Last day</button>
+            <button (click)="transactionsLastWeek($event)">Last week</button>
           </div>
         </div>
         <div  class="legend">
@@ -44,17 +44,23 @@
             <label>{{ transactionType | titlecase }}</label>
           </div>
         </div>
-        <canvas *ngIf="isBrowser"
+        <canvas *ngIf="isBrowser&&isAliveLastDay"
         baseChart
         type="bar"
         [options]="barChartOptions"
-        [data]="barChartData">
+        [data]="barChartDataLastDay">
+        </canvas>
+        <canvas *ngIf="isBrowser&&!isAliveLastDay"
+        baseChart
+        type="bar"
+        [options]="barChartOptions"
+        [data]="barChartDataLastWeek">
         </canvas>
       </div>
       <div class="graphAmount" *ngIf="!isAliveLastTransaction">
         <h2>Transaction amount variation</h2>
-        <div class="noTransaction">
-          <h3 id="warning">There is no</h3>
+        <div class="noTransaction" id="noTransactions">
+          <h3 id="warningTransaction">There is no</h3>
           <h3>transaction yet.</h3>
         </div>
       </div>

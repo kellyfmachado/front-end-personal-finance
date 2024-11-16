@@ -24,6 +24,7 @@ export class HomeComponent {
   }
 
   public isAliveLastTransaction: boolean = false;
+  public isAliveLastDay: boolean = true;
 
   public transactionTypes: string[] = ['deposit', 'withdraw'];
   public now: Date = new Date();
@@ -33,9 +34,25 @@ export class HomeComponent {
   public transactions: TransactionModel[] = [];
   public lastTransaction: TransactionModel | null = null;
   public availableAmount: number = 0;
+  public graphTime: Date = new Date();
+  public onLastDay: boolean = true;
+  public firstTime: boolean = true;
 
   ngOnInit() {
     this.getCategories();
+    this.getTransactions();
+    this.graphTime.setHours(this.graphTime.getHours() - 24);
+  }
+
+  transactionsLastDay(event: MouseEvent){
+    this.graphTime.setHours(this.graphTime.getHours() - 24);
+    this.onLastDay = true;
+    this.getTransactions();
+  }
+
+  transactionsLastWeek(event: MouseEvent){
+    this.graphTime.setDate(this.graphTime.getDate() - 7);
+    this.onLastDay = false;
     this.getTransactions();
   }
 
@@ -58,21 +75,45 @@ export class HomeComponent {
   getTransactions() {
     this.transactionService.list().subscribe({
       next: (response)  => {
-        this.transactions = response.content.sort((a: { id: number; }, b: { id: number; }) => a.id - b.id);;
+        this.transactions = response.content.sort((a: { id: number; }, b: { id: number; }) => a.id - b.id);
+        this.transactions = this.transactions.filter(transaction => transaction.date >= this.graphTime);
+        this.graphTime = new Date();
 
-        this.barChartData.labels = this.transactions.map(transaction => new Date(transaction.date).toLocaleTimeString('pt-BR', {
+        if(this.onLastDay){
+          this.isAliveLastDay = true;
+        }
+        else {
+          this.isAliveLastDay = false;
+        }
+        
+        this.barChartDataLastDay.labels = this.transactions.map(transaction => 
+          new Date(transaction.date).toLocaleTimeString('pt-BR', {
           hour: '2-digit',
           minute: '2-digit'
         }));
 
-        this.barChartData.datasets[0].data = this.transactions.map(transaction => transaction.amount);
-        this.barChartData.datasets[0].backgroundColor = this.transactions.map(transaction => this.typeColors[transaction.type]);
-        this.barChartData.datasets[0].hoverBackgroundColor = this.transactions.map(transaction => this.hoverTypeColors[transaction.type]);
+        this.barChartDataLastWeek.labels = this.transactions.map(transaction => 
+          new Date(transaction.date).toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit'
+          })
+        );          
 
-        this.lastTransaction = this.transactions[this.transactions.length-1];
-        this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
-        this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);
+        this.barChartDataLastDay.datasets[0].data = this.transactions.map(transaction => transaction.amount);
+        this.barChartDataLastDay.datasets[0].backgroundColor = this.transactions.map(transaction => this.typeColors[transaction.type]);
+        this.barChartDataLastDay.datasets[0].hoverBackgroundColor = this.transactions.map(transaction => this.hoverTypeColors[transaction.type]);
 
+        this.barChartDataLastWeek.datasets[0].data = this.transactions.map(transaction => transaction.amount);
+        this.barChartDataLastWeek.datasets[0].backgroundColor = this.transactions.map(transaction => this.typeColors[transaction.type]);
+        this.barChartDataLastWeek.datasets[0].hoverBackgroundColor = this.transactions.map(transaction => this.hoverTypeColors[transaction.type]);
+
+        if (this.firstTime){
+          this.lastTransaction = this.transactions[this.transactions.length-1];
+          this.lastTransaction.type = this.capitalizeWords(this.lastTransaction.type);
+          this.lastTransaction.categoryModel.name = this.capitalizeWords(this.lastTransaction.categoryModel.name);
+          this.firstTime = false; 
+        }
+        
         if(this.transactions.length!=0){
           this.isAliveLastTransaction = true;
         }
@@ -171,7 +212,20 @@ export class HomeComponent {
   };
 
   // Amount graph data
-  public barChartData: ChartData<'bar'> = {
+  public barChartDataLastDay: ChartData<'bar'> = {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: [],
+        barPercentage: 0.5,
+        categoryPercentage: 0.9
+      }
+    ]
+  };
+
+  public barChartDataLastWeek: ChartData<'bar'> = {
     labels: [],
     datasets: [
       {
