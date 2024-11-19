@@ -123,7 +123,7 @@ export class TransactionComponent {
         this.categories = response.content.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);;
 
         for(let i = 0; i<this.categories.length; i++){
-          this.categories[i].name = this.capitalizeWords(this.categories[i].name);
+          this.categories[i].name = this.capitalizeFirst(this.categories[i].name);
         }
       },
       error: (err) => console.log('Error listing categories', err)
@@ -198,7 +198,6 @@ export class TransactionComponent {
   }
 
   addTransaction(){
-    console.log(this.transactionModel);
     this.transactionService.add(this.transactionModel).subscribe({
       next: () => {
         this.listTransactions();
@@ -215,7 +214,6 @@ export class TransactionComponent {
   }
 
   updateTransaction(){
-    console.log(this.transactionModel);
     this.transactionService.update(this.transactionModel).subscribe({
       next: ()  => {
         this.listTransactions();
